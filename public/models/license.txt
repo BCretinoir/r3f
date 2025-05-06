@@ -1,0 +1,11 @@
+Model Information:
+* title:	Worn boxing gloves
+* source:	https://sketchfab.com/3d-models/worn-boxing-gloves-a7c44fe1e8aa4fbab100cd88415c600b
+* author:	ule71 (https://sketchfab.com/ule71)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Worn boxing gloves" (https://sketchfab.com/3d-models/worn-boxing-gloves-a7c44fe1e8aa4fbab100cd88415c600b) by ule71 (https://sketchfab.com/ule71) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
