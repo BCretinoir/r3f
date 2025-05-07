@@ -1,22 +1,14 @@
-// App.tsx
+// App.jsx
 import { Canvas } from '@react-three/fiber'
 import { Environment, OrbitControls } from '@react-three/drei'
-import { Physics } from '@react-three/rapier'
-import { BoxingGloves } from './boxer/boxer'
-import { Ring } from './boxer/ring'
+import { AsteroidRain } from './boxer/scene' 
 
 export default function App() {
   return (
-    <Canvas camera={{ fov: 75, position: [0, 1.6, 5] }}>
-      <ambientLight />
-      <Environment preset="warehouse" />
-
-      <Physics gravity={[0, -9.81, 0]}>
-        <Ring />
-        <BoxingGloves />
-      </Physics>
-
-      <OrbitControls /> 
-    </Canvas>
+    <Canvas>
+    <ambientLight intensity={0.4} />
+    <directionalLight position={[5, 10, 5]} intensity={1} castShadow />
+    <AsteroidRain count={50} />
+  </Canvas>
   )
 }
