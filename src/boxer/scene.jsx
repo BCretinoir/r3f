@@ -31,7 +31,7 @@ function Asteroid({ mesh, texture, position, scale, direction, rotationSpeed }) 
       setExplosionTime((t) => t + delta)
       ref.current.scale.multiplyScalar(1 + delta * 5)
       if (explosionTime > 0.5) {
-      
+   
         ref.current.position.set(
           (Math.random() - 0.5) * 1000,
           (Math.random() - 0.5) * 1000,
@@ -51,7 +51,7 @@ function Asteroid({ mesh, texture, position, scale, direction, rotationSpeed }) 
     // Mouvement
     ref.current.position.addScaledVector(direction, delta)
 
-    const limit = 5000
+    const limit = 600
     const pos = ref.current.position
     if (Math.abs(pos.x) > limit || Math.abs(pos.y) > limit || Math.abs(pos.z) > limit) {
       pos.set(
@@ -61,7 +61,6 @@ function Asteroid({ mesh, texture, position, scale, direction, rotationSpeed }) 
       )
     }
 
-    
     if (Math.random() < 0.0005) {
       setExploding(true)
     }
@@ -69,18 +68,20 @@ function Asteroid({ mesh, texture, position, scale, direction, rotationSpeed }) 
 
   return (
     <primitive
-      object={mesh}
+      object={mesh.clone()}
       ref={ref}
       position={position}
       scale={[scale, scale, scale]}
       castShadow
       receiveShadow
-    />
+    >
+      <meshStandardMaterial attach="material" map={texture} flatShading />
+    </primitive>
   )
 }
 
 export function AsteroidRain({ count = 100 }) {
-  // Charger les textures d'astéroïdes
+  const { nodes } = useGLTF('scene.gltf')
   const loadedTextures = useTexture(texturePaths)
 
   const meshes = useMemo(() => {
@@ -88,7 +89,7 @@ export function AsteroidRain({ count = 100 }) {
   }, [nodes])
 
   const asteroids = useMemo(() => {
-    if (!loadedTextures.length) return []
+    if (!meshes.length || !loadedTextures.length) return []
 
     return Array.from({ length: count }, () => {
       const scale = Math.random() * 2 + 0.5
@@ -106,7 +107,7 @@ export function AsteroidRain({ count = 100 }) {
           (Math.random() - 0.5) * 2
         ).normalize().multiplyScalar(5),
         scale,
-        rotationSpeed: Math.random() * 1 + 0.5, 
+        rotationSpeed: Math.random() * 2 + 0.5, 
       }
     })
   }, [meshes, loadedTextures, count])
